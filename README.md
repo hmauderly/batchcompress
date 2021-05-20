@@ -1,5 +1,7 @@
 # batchcompress
 
+Requires ImageMagick
+
 Run the following command to compress all jpeg files from a directory (recursive)
 
 ./comp.sh {FULL_PATH} {EXT} {SIZE}
