@@ -2,7 +2,7 @@
 FULLPATH=$1
 SIZE=$2
 QUALITYMIN=85
-
+COUNTER=0
 
 if [ -z "$SIZE" ]
 then
@@ -16,13 +16,16 @@ then
       exit 0
 fi
 
-echo "Ext:${EXT}"
+echo "START"
+date
 echo "Size:${SIZE}" 
 echo "FULLPATH:${FULLPATH}"
 
 find $FULLPATH -name "*.jpg" -o -name "*.jpeg" -size +$SIZE -print0 | while read -d $'\0' FILE 
 do
+    let COUNTER++ 
     echo "FILE-->$FILE"
+    echo $COUNTER
     FILEQUALTY=`identify -format '%Q' $FILE`
     FILESIZESRC=`wc -c < "$FILE"`
     echo "FILE_SIZE_QUALITY-->$FILEQUALTY"
@@ -36,5 +39,6 @@ do
     echo "----------------"
 done
 
+echo "END"
+date
 
-printf "\n"
