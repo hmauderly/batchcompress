@@ -1,10 +1,49 @@
 #!/bin/bash
-MAINPATH=/netapp/04/P0/00/
-RESULTFILE=OUTPUT_04_P0_00_
+ROOTPATH=$1
+OUTPUTPATH=$1
+MAINPATH=${ROOTPATH}/0
+RESULTFILE=${OUTPUTPATH}_0
 
-for i in {2..9}
+for i in {0..9}
 do
-    echo $i
-    RESULT=`./comp.sh $MAINPATH0$i 1k >> $RESULTFILE0$i` 
+    if [ $i le 8 ]
+    then
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i &
+    fi
+    if [ $i = 9 ]
+    then
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i 
+    fi
 done
+
+
+MAINPATH=${ROOTPATH}/
+RESULTFILE=${OUTPUTPATH}_
+
+
+i=10
+while [ $i -le 96 ]
+do
+    echo "$MAINPATH$i"
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i &
+    let i++
+    echo "$MAINPATH$i"
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i &
+    let i++
+    echo "$MAINPATH$i"
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i &
+    let i++
+    echo "$MAINPATH$i"
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i &
+    let i++
+   if [ $i = 100 ]
+   then
+        exit 0
+    fi
+    echo "$MAINPATH$i"
+    ./comp.sh $MAINPATH$i 1k >> $RESULTFILE$i 
+    let i++
+
+done
+
 

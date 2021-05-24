@@ -21,11 +21,13 @@ date
 echo "Size:${SIZE}" 
 echo "FULLPATH:${FULLPATH}"
 
-find $FULLPATH -name "*.jpg" -o -name "*.jpeg" -size +$SIZE -print0 | while read -d $'\0' FILE 
+#find $FULLPATH -name "*.jpg" -o -name "*.jpeg" -size +$SIZE -print0 | while read -d $'\0' FILE 
+find $FULLPATH -name "*.jpg" -o -name "*.jpeg" -size +$SIZE | while read FILE 
 do
     let COUNTER++ 
     echo "FILE-->$FILE"
     echo $COUNTER
+    echo $FILE 
     FILEQUALTY=`identify -format '%Q' $FILE`
     FILESIZESRC=`wc -c < "$FILE"`
     echo "FILE_SIZE_QUALITY-->$FILEQUALTY"
