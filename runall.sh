@@ -1,0 +1,30 @@
+#!/bin/bash
+ROOTPATH=$1
+OUTPUTPATH=$2
+ROOTPATH2=${ROOTPATH}/0
+OUTPUTPATH2=${OUTPUTPATH}_0
+
+
+for i in {0..9}
+do
+    MAINPATH=${ROOTPATH2}${i}
+    RESULTFILE=${OUTPUTPATH2}${i}
+    echo $MAINPATH
+    echo $RESULTFILE
+    ./runbatch.sh $MAINPATH $RESULTFILE
+done
+
+ROOTPATH2=${ROOTPATH}/
+OUTPUTPATH2=${OUTPUTPATH}_
+
+for i in {10..99}
+do
+    MAINPATH=${ROOTPATH2}${i}
+    RESULTFILE=${OUTPUTPATH2}${i}
+    echo $MAINPATH
+    echo $RESULTFILE
+    ./runbatch.sh $MAINPATH $RESULTFILE
+done
+
+
+
