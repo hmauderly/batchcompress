@@ -25,6 +25,3 @@ do
     echo $RESULTFILE
     ./runbatch.sh $MAINPATH $RESULTFILE
 done
-
-
-
